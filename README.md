@@ -1,7 +1,3 @@
-# Temp-Mail
-
-# Temp-Mail
-
 # 📧 Temp Mail Autofill / Временная почта
 
 Browser extension for automatically generating a temporary email address, inserting it into any email field, and receiving incoming messages right in the popup.
@@ -32,6 +28,19 @@ Browser extension for automatically generating a temporary email address, insert
 - **В попапе**: откройте расширение → увидите текущий email → кнопки «Новый email» и «Обновить письма» → клик по письму откроет его содержимое.
 - **Переключение языка**: кнопка в правом верхнем углу попапа (🇬🇧 EN / 🇷🇺 RU). Выбор сохраняется.
 
+### Структура проекта
+- `temp-mail-extension/`
+  - `manifest.json` — конфигурация расширения (Manifest V3)
+  - `background.js` — service worker (работа с API Mail.tm)
+  - `content.js` — внедрение кнопки в email-поля на сайтах
+  - `utils/`
+    - `detection.js` — поиск полей ввода email
+  - `popup/`
+    - `popup.html` — интерфейс окна расширения
+    - `popup.js` — логика попапа (письма, языки)
+  - `icons/` (опционально)
+    - `123icon.png`
+
 ### Технологии
 - Manifest V3
 - Mail.tm API (https://api.mail.tm)
@@ -41,19 +50,6 @@ Browser extension for automatically generating a temporary email address, insert
 - **Кнопка не появляется** – проверьте, что `detection.js` загружается раньше `content.js` в `content_scripts`. Перезагрузите расширение.
 - **Не грузятся письма** – временная недоступность `api.mail.tm`.
 - **Ошибка создания email** – откройте консоль background (`about:debugging` → расширение → Инспектировать).
-
-### Структура проекта
-temp-mail-extension/
-├── manifest.json # Конфигурация расширения (Manifest V3)
-├── background.js # Service worker (работа с API Mail.tm)
-├── content.js # Внедрение кнопки в email-поля на сайтах
-├── utils/
-│ └── detection.js # Поиск полей ввода email
-├── popup/
-│ ├── popup.html # Интерфейс окна расширения
-│ └── popup.js # Логика попапа (письма, языки)
-└── icons/ # Иконки расширения (опционально)
-└── 123icon.png
 
 ---
 
@@ -79,6 +75,19 @@ temp-mail-extension/
 - **In the popup**: open extension → see current email → buttons “New email” and “Refresh messages” → click a message to read it.
 - **Switch language**: button in top‑right corner of the popup (🇬🇧 EN / 🇷🇺 RU). Choice is saved.
 
+### Project structure
+- `temp-mail-extension/`
+  - `manifest.json` — extension manifest (Manifest V3)
+  - `background.js` — service worker (Mail.tm API)
+  - `content.js` — injects button into email fields
+  - `utils/`
+    - `detection.js` — finds email input fields
+  - `popup/`
+    - `popup.html` — popup UI
+    - `popup.js` — popup logic (messages, languages)
+  - `icons/` (optional)
+    - `123icon.png`
+
 ### Technologies
 - Manifest V3
 - Mail.tm API (https://api.mail.tm)
@@ -89,19 +98,6 @@ temp-mail-extension/
 - **Messages not loading** – temporary issue with `api.mail.tm`.
 - **Error creating email** – inspect background console (`about:debugging` → extension → Inspect).
 
-### Project structure
-
-temp-mail-extension/
-├── manifest.json # Extension manifest (Manifest V3)
-├── background.js # Service worker (Mail.tm API)
-├── content.js # Injects button into email fields
-├── utils/
-│ └── detection.js # Finds email input fields
-├── popup/
-│ ├── popup.html # Popup UI
-│ └── popup.js # Popup logic (messages, languages)
-└── icons/ # Optional icons
-└── 123icon.png
 ---
 
 ## 📜 License
