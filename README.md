@@ -42,6 +42,19 @@ Browser extension for automatically generating a temporary email address, insert
 - **Не грузятся письма** – временная недоступность `api.mail.tm`.
 - **Ошибка создания email** – откройте консоль background (`about:debugging` → расширение → Инспектировать).
 
+### Структура проекта
+temp-mail-extension/
+├── manifest.json # Конфигурация расширения (Manifest V3)
+├── background.js # Service worker (работа с API Mail.tm)
+├── content.js # Внедрение кнопки в email-поля на сайтах
+├── utils/
+│ └── detection.js # Поиск полей ввода email
+├── popup/
+│ ├── popup.html # Интерфейс окна расширения
+│ └── popup.js # Логика попапа (письма, языки)
+└── icons/ # Иконки расширения (опционально)
+└── 123icon.png
+
 ---
 
 ## 🇬🇧 English
@@ -76,6 +89,19 @@ Browser extension for automatically generating a temporary email address, insert
 - **Messages not loading** – temporary issue with `api.mail.tm`.
 - **Error creating email** – inspect background console (`about:debugging` → extension → Inspect).
 
+### Project structure
+
+temp-mail-extension/
+├── manifest.json # Extension manifest (Manifest V3)
+├── background.js # Service worker (Mail.tm API)
+├── content.js # Injects button into email fields
+├── utils/
+│ └── detection.js # Finds email input fields
+├── popup/
+│ ├── popup.html # Popup UI
+│ └── popup.js # Popup logic (messages, languages)
+└── icons/ # Optional icons
+└── 123icon.png
 ---
 
 ## 📜 License
