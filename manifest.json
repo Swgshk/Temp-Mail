@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Temp Mail Autofill",
+  "version": "2.0",
+  "description": "Автовставка временной почты и просмотр писем (теперь на Mail.tm)",
+
+  "permissions": [
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://api.mail.tm/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Temp Mail"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils/detection.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "icons": {
+    "16": "icons/123icon.png",
+    "32": "icons/123icon.png",
+    "48": "icons/123icon.png",
+    "128": "icons/123icon.png"
+  }
+}

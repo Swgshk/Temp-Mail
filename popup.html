@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 450px;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f8f9fa;
+            color: #1e2a3e;
+        }
+
+        /* Заголовок */
+        .header {
+            background: white;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d6efd;
+        }
+        .lang-switch {
+            background: #e9ecef;
+            border: none;
+            border-radius: 30px;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e2a3e;
+        }
+        .lang-switch:hover {
+            background: #dee2e6;
+        }
+
+        /* Карточка почты */
+        .email-card {
+            background: white;
+            margin: 16px 16px 12px 16px;
+            padding: 12px 16px;
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .email-input {
+            flex: 1;
+            border: 1px solid #dee2e6;
+            background: #f1f3f5;
+            padding: 10px 12px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-family: monospace;
+            color: #212529;
+            outline: none;
+            cursor: copy;
+        }
+        .email-input:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 40px;
+            transition: background 0.1s;
+            color: #6c757d;
+        }
+        .copy-btn:hover {
+            background: #e9ecef;
+            color: #0d6efd;
+        }
+
+        /* Кнопки действий */
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin: 0 16px 16px 16px;
+        }
+        .btn {
+            flex: 1;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .btn-primary {
+            background: #0d6efd;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #0b5ed7;
+        }
+        .btn-secondary {
+            background: #e9ecef;
+            color: #212529;
+        }
+        .btn-secondary:hover {
+            background: #dee2e6;
+        }
+
+        /* Контейнер для списка и деталей */
+        .messages-container, .detail-view {
+            margin: 8px 16px 16px 16px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .message-card {
+            background: white;
+            border-radius: 20px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecef;
+        }
+        .message-card:hover {
+            border-color: #cfe2ff;
+            box-shadow: 0 4px 12px rgba(13,110,253,0.1);
+            transform: translateY(-1px);
+        }
+        .message-from {
+            font-weight: 600;
+            font-size: 14px;
+            color: #0d6efd;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .message-subject {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1e2a3e;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .message-date {
+            font-size: 11px;
+            color: #adb5bd;
+        }
+        .empty-messages {
+            text-align: center;
+            padding: 40px 20px;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Детальный просмотр */
+        .detail-view {
+            background: white;
+            border-radius: 24px;
+            padding: 16px;
+        }
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 12px;
+        }
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #0d6efd;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+        .back-btn:hover {
+            background: #e9ecef;
+        }
+        .detail-subject {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .detail-meta {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 16px;
+        }
+        .detail-body {
+            font-size: 14px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        .detail-body a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        .detail-body a:hover {
+            text-decoration: underline;
+        }
+        .detail-body img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 data-i18n="appName">📧 Temp Mail</h1>
+        <button id="langSwitch" class="lang-switch">🇬🇧 EN</button>
+    </div>
+
+    <div class="email-card">
+        <input type="text" id="email" class="email-input" readonly>
+        <button id="copyEmailBtn" class="copy-btn" title="Копировать">📋</button>
+    </div>
+
+    <div class="actions">
+        <button id="newBtn" class="btn btn-primary" data-i18n="newEmailBtn">✨ Новый email</button>
+        <button id="refreshBtn" class="btn btn-secondary" data-i18n="refreshBtn">🔄 Обновить письма</button>
+    </div>
+
+    <div id="mainContent">
+        <div class="messages-container">
+            <div class="empty-messages" data-i18n="loading">⏳ Загрузка...</div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

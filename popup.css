@@ -1,0 +1,62 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 10px;
+  width: 320px;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#email {
+  font-size: 14px;
+  word-break: break-all;
+  background: #2a2a2a;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+button {
+  background: #4f8cff;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #3a6edc;
+}
+
+#messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+#messages li {
+  padding: 6px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+#messages li:hover {
+  background: #2a2a2a;
+}
+
+#viewer {
+  max-height: 150px;
+  overflow: auto;
+  background: #111;
+  padding: 8px;
+  border-radius: 6px;
+}
